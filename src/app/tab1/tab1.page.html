@@ -1,17 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <goa-one-column-layout>
+    <section slot="header">
+      <goa-microsite-header type="live"></goa-microsite-header>
+      <goa-app-header heading="GoA UI Components">
+        <goa-app-header-menu heading="Tickets" leadingIcon="ticket">
+          <a href="#">Cases</a>
+          <a href="#">Payments</a>
+          <a href="#">Outstanding</a>
+        </goa-app-header-menu>
+      </goa-app-header>
+    </section>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <goa-page-block>
+      <goa-container accent="thick" type="info" mt="l">
+        <div slot="title">Interactive Container</div>
+        <goa-form-item label="Username">
+          <goa-input
+            goaValue
+            name="username"
+            [formControl]="userNameFC"
+          ></goa-input>
+        </goa-form-item>
+
+        <goa-form-item label="Password">
+          <goa-input
+            goaValue
+            name="password"
+            type="password"
+            [formControl]="passwordFC"
+          ></goa-input>
+        </goa-form-item>
+
+        <goa-button type="primary" mt="l" (_click)="handleClick()">
+          Save
+        </goa-button>
+
+        <goa-modal [open]="showModal">
+          Hey {{userNameFC.value}}, your password is {{passwordFC.value}} ;)
+          <footer slot="actions">
+            <goa-button (_click)="showModal = false" type="primary">
+              Close
+            </goa-button>
+          </footer>
+        </goa-modal>
+      </goa-container>
+    </goa-page-block>
+  </goa-one-column-layout>
 </ion-content>
